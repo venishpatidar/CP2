@@ -223,26 +223,27 @@ public class Swing implements ActionListener{
     public void AreaFrame(){
       JFrame salaryframe = new JFrame("calculate area");
       salaryframe.setSize(400,400);
-
+      JPanel bottom = new JPanel();
+      bottom.setLayout(new GridLayout(3,0));
       JButton calculate = new JButton("calculate");
       JTextField atf = new JTextField(4);
       JTextField btf = new JTextField(4);
-
-      JLabel alab = new JLabel("Height");
-      JLabel blab = new JLabel("Width");
-
+      JLabel history = new JLabel("Answers");
+      JLabel blab = new JLabel("Height");
+      JLabel alab = new JLabel("Width");
+      JTextField ans = new JTextField(50);
       JPanel getinput = new JPanel();
       getinput.add(blab);getinput.add(btf);getinput.add(alab);getinput.add(atf);getinput.add(calculate);
-      JTextArea ta = new JTextArea();
+      
 
-      atf.setText("10");
-      btf.setText("5");
+
+      atf.setText("150");
+      btf.setText("150");
       JLabel toplab = new JLabel();
       toplab.setText(
       "--------------"
        +"Welcome to Area calculation"
        +"----------\n");
-       ta.setText("Enter unit\n");
 
        calculate.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -250,16 +251,20 @@ public class Swing implements ActionListener{
         bval = btf.getText();
         a = Integer.parseInt(aval);
         b = Integer.parseInt(bval);
-        QuadArea qa = new QuadArea();
-        //System.out.println("hkhk");
-        ta.append(qa.area(a,b));
+        QuadArea qa = new QuadArea(a,b);
+        salaryframe.setVisible(false);
+        salaryframe.getContentPane().add(BorderLayout.CENTER,qa);
+        ans.setText(qa.area());
+        salaryframe.setVisible(true);
       }
     });
-
+   
+      bottom.add(history);
+      bottom.add(ans);
+      bottom.add(getinput);
       salaryframe.getContentPane().add(BorderLayout.NORTH,toplab);
-
-      salaryframe.getContentPane().add(BorderLayout.CENTER,ta);
-      salaryframe.getContentPane().add(BorderLayout.SOUTH,getinput);
+      //salaryframe.getContentPane().add(BorderLayout.CENTER,ta);
+      salaryframe.getContentPane().add(BorderLayout.SOUTH,bottom);
 
       salaryframe.setVisible(true);
     }
@@ -313,5 +318,14 @@ public class Swing implements ActionListener{
   String Billcalcfunc(int a){
     return "work under prgress";
   }
+
+//-------------------------------------------------------
+//                Graphics Section
+//------------------------------------------------------
+
+
+
+
+
 
 }
