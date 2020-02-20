@@ -250,9 +250,9 @@ public class Swing implements ActionListener{
         bval = btf.getText();
         a = Integer.parseInt(aval);
         b = Integer.parseInt(bval);
-        //QuadArea qa = new QuadArea();
+        QuadArea qa = new QuadArea();
         //System.out.println("hkhk");
-        //ta.append(qa.area(a,b));
+        ta.append(qa.area(a,b));
       }
     });
 
