@@ -19,76 +19,91 @@ public class Swing implements ActionListener{
   public static void main(String[] args) {
 
     Swing instance = new Swing();
-
-
+    JLabel Heads = new JLabel("Press desired button to proceed",SwingConstants.CENTER);
+    Heads.setForeground(Color.WHITE);
     JFrame mainframe = new JFrame("all in one");
     mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mainframe.setSize(800,400);
+    mainframe.setSize(400,400);
 
 //-------------- creating pannels-----------------------
     JPanel selection = new JPanel();
     JPanel getinput = new JPanel();
     JPanel boxpannel = new JPanel();
     JPanel day3 = new JPanel();
-//--------------buttons---------------
+
+
+
+
+//--------------------button line 1---------------------
     JButton salary = new JButton("salary");
+    salary.setBackground(Color.WHITE);
     selection.add(salary);
     salary.setActionCommand(Actions.HELLO.name());
     salary.addActionListener(instance);
 
     JButton d2y = new JButton("day to year");
+    d2y.setBackground(Color.WHITE);
     selection.add(d2y);
     d2y.setActionCommand(Actions.D2Yaction.name());
     d2y.addActionListener(instance);
 
     JButton bill = new JButton("bill");
+    bill.setBackground(Color.WHITE);
     selection.add(bill);
     bill.setActionCommand(Actions.BILL.name());
     bill.addActionListener(instance);
 
-    JButton dectob = new JButton("123>01101");
-    selection.add(dectob);
 
+    selection.setOpaque(false);
     selection.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-    JButton Area = new JButton("Aea");
+   
+   //----------------Button line 2---------------------------
+    JButton Area = new JButton("Area");
+    Area.setBackground(Color.WHITE);
     day3.add(Area);
     Area.setActionCommand(Actions.AreaButton.name());
     Area.addActionListener(instance);
-
-
-
+    JLabel pic = new JLabel(new ImageIcon("graphics/background.jpg"));
+   
+   
+    day3.setOpaque(false);  
     day3.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 
 
 
-
-//---------------------Box pannel-------------------------------
+    Background back = new Background(mainframe);
+//---------------------Grid pannel-------------------------------
+   
     boxpannel.add(selection);
     boxpannel.add(day3);
-    boxpannel.setLayout(new GridLayout(3,0));
+    boxpannel.setLayout(new GridLayout(5,0));
+    boxpannel.setOpaque(false);   
 
-//--------------------get input ----------------------------
-    JLabel label = new JLabel("Enter The input");
-    JTextField tf = new JTextField(10);
-    JButton send = new JButton("Send");
-    JButton reset = new JButton("Reset");
-    getinput.add(label);
-    getinput.add(tf);
-    getinput.add(send);
-    getinput.add(reset);
+//--------------------Main Base Frame---------------------------
+         
+    mainframe.setContentPane(new JPanel() {
+        Image image = Toolkit.getDefaultToolkit().getImage("graphics/background.jpg");
+        public void paintComponent(Graphics g) {
+             super.paintComponent(g);
+             g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
+            
+        }
+    });
 
-    mainframe.getContentPane().add(BorderLayout.SOUTH,getinput);
-
+    mainframe.getContentPane().add(BorderLayout.NORTH, Heads);
     mainframe.getContentPane().add(BorderLayout.CENTER, boxpannel);
-    mainframe.getContentPane().add(BorderLayout.NORTH, instance.ta);
 
+    
     mainframe.setVisible(true);
 
   }
 
+
+
+//-------------------Action mapping-----------------------
     public void actionPerformed(ActionEvent evt) {
       Swing abs = new Swing();
       if (evt.getActionCommand() == Actions.HELLO.name()) {
@@ -129,8 +144,9 @@ public class Swing implements ActionListener{
       "-------------------"
        +"Welcome to salary calculation"
        +"--------------\n");
+       ta.setBackground(Color.BLACK);
+       ta.setForeground(Color.WHITE);
        ta.setText("Enter the salar of employee\n");
-
        calculate.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
       	amount = tf.getText();
@@ -166,7 +182,8 @@ public class Swing implements ActionListener{
        +"Welcome to daytoyear calculation"
        +"--------------\n");
        ta.setText("Enter days\n");
-
+       ta.setBackground(Color.BLACK);
+       ta.setForeground(Color.WHITE);
        calculate.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
       	amount = tf.getText();
@@ -202,7 +219,8 @@ public class Swing implements ActionListener{
        +"Welcome to electricity bill calculation"
        +"----------\n");
        ta.setText("Enter unit\n");
-
+       ta.setBackground(Color.BLACK);
+       ta.setForeground(Color.WHITE);
        calculate.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
       	amount = tf.getText();

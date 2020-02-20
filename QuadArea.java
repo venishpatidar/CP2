@@ -11,6 +11,9 @@ public class QuadArea extends Canvas {
     }
 
     public void paint(Graphics g){
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,1000,1000);  
+        g.setColor(Color.WHITE);
         g.fillRect(100,20,width,height);
     }
 
