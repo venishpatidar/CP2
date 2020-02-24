@@ -1,25 +1,22 @@
 import java.util.*;
 class person{
   String name;
-  String addr;
-  person(String name,String addr){
+  person(String name){
     this.name = name;
-    this.addr = addr;
+
   }
 
   String get_name(){
     return this.name;
   }
-  String get_addr(){
-    return this.addr;
-  }
+
 
 }
 class Student extends person{
   List<String> courses = new ArrayList<String>();
   List<Integer> num = new ArrayList<>();
-  Student(String name,String addr){
-    super(name,addr);
+  Student(String name){
+    super(name);
   }
   void addCourseandGrade(int marks,String courseName){
     courses.add(courseName);
@@ -29,17 +26,19 @@ class Student extends person{
     System.out.println(num);
     System.out.println(courses);
   }
-  void get_avg(){
+  String get_avg(){
     int avg =0;
     for(int i =0;i<num.size();i++){
       avg = avg+num.get(i);
     }
     avg = avg/num.size();
     System.out.println(avg);
+    String s = "The avg of marks is " + avg + "\n";
+    return s;
   }
 
 
-
+/*
   public static void main(String[] args){
     Student s = new Student("ad","d");
     s.addCourseandGrade(95,"Maths");
@@ -49,5 +48,6 @@ class Student extends person{
     s.get_avg();
 
   }
+*/
 
 }

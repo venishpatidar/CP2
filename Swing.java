@@ -8,7 +8,8 @@ public class Swing implements ActionListener{
    HELLO,
    D2Yaction,
    BILL,
-   AreaButton
+   AreaButton,
+   studentRecords
  }
   JTextArea ta = new JTextArea();
   String amount,aval,bval;
@@ -30,7 +31,7 @@ public class Swing implements ActionListener{
     JPanel getinput = new JPanel();
     JPanel boxpannel = new JPanel();
     JPanel day3 = new JPanel();
-
+    JPanel day4 = new JPanel();
 
 
 
@@ -57,46 +58,57 @@ public class Swing implements ActionListener{
     selection.setOpaque(false);
     selection.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-   
+
    //----------------Button line 2---------------------------
     JButton Area = new JButton("Area");
     Area.setBackground(Color.WHITE);
     day3.add(Area);
     Area.setActionCommand(Actions.AreaButton.name());
     Area.addActionListener(instance);
-    JLabel pic = new JLabel(new ImageIcon("graphics/background.jpg"));
-   
-   
-    day3.setOpaque(false);  
+
+
+    day3.setOpaque(false);
     day3.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 
 
 
     Background back = new Background(mainframe);
+
+//------------------Button line 3--------------------------------
+
+    JButton stdrec = new JButton("Stu.Record");
+    stdrec.setBackground(Color.WHITE);
+    stdrec.setActionCommand(Actions.studentRecords.name());
+    stdrec.addActionListener(instance);
+    day4.add(stdrec);
+    day4.setOpaque(false);
+    day4.setLayout(new FlowLayout(FlowLayout.CENTER));
+
 //---------------------Grid pannel-------------------------------
-   
+
     boxpannel.add(selection);
     boxpannel.add(day3);
+    boxpannel.add(day4);
     boxpannel.setLayout(new GridLayout(5,0));
-    boxpannel.setOpaque(false);   
+    boxpannel.setOpaque(false);
 
 //--------------------Main Base Frame---------------------------
-         
+
     mainframe.setContentPane(new JPanel() {
         Image image = Toolkit.getDefaultToolkit().getImage("graphics/background.jpg");
         public void paintComponent(Graphics g) {
              super.paintComponent(g);
              g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
-            
+
         }
     });
 
     mainframe.getContentPane().add(BorderLayout.NORTH, Heads);
     mainframe.getContentPane().add(BorderLayout.CENTER, boxpannel);
 
-    
+
     mainframe.setVisible(true);
 
   }
@@ -124,6 +136,9 @@ public class Swing implements ActionListener{
       if (evt.getActionCommand() == Actions.AreaButton.name()) {
           AreaFrame();
 
+      }
+      if (evt.getActionCommand() == Actions.studentRecords.name()) {
+          studentFrame();
       }
     }
 
@@ -252,7 +267,7 @@ public class Swing implements ActionListener{
       JTextField ans = new JTextField(50);
       JPanel getinput = new JPanel();
       getinput.add(blab);getinput.add(btf);getinput.add(alab);getinput.add(atf);getinput.add(calculate);
-      
+
 
 
       atf.setText("150");
@@ -276,7 +291,7 @@ public class Swing implements ActionListener{
         salaryframe.setVisible(true);
       }
     });
-   
+
       bottom.add(history);
       bottom.add(ans);
       bottom.add(getinput);
@@ -287,6 +302,46 @@ public class Swing implements ActionListener{
       salaryframe.setVisible(true);
     }
 
+//----------------------------studentFrame------------------------------
+public void studentFrame(){
+
+  JFrame sframe = new JFrame("studentRecords");
+  sframe.setSize(400,400);
+  JFrame option = new JFrame();
+  String name=JOptionPane.showInputDialog(option,"Enter Name");
+  Student s = new Student(name);
+  JButton avg = new JButton("Avg");
+  JTextField tf = new JTextField(10);
+  JLabel lab = new JLabel("Enter the marks");
+  JPanel getinput = new JPanel();
+  getinput.add(avg);
+  JTextArea ta = new JTextArea();
+
+  tf.setText("2000");
+  JLabel toplab = new JLabel();
+  toplab.setText(
+  "-------------------"
+   +"Welcome to student Frame"
+   +"--------------\n");
+   ta.setBackground(Color.BLACK);
+   ta.setForeground(Color.WHITE);
+   String wel = "Welcome"+name;
+   ta.setText(wel);
+
+   avg.addActionListener(new ActionListener() {
+  public void actionPerformed(ActionEvent e) {
+
+    ta.append(s.get_name());
+  }
+});
+
+  sframe.getContentPane().add(BorderLayout.NORTH,toplab);
+
+  sframe.getContentPane().add(BorderLayout.CENTER,ta);
+  sframe.getContentPane().add(BorderLayout.SOUTH,getinput);
+
+  sframe.setVisible(true);
+}
 
 
 
